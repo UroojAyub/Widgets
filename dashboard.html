@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<link rel="stylesheet" href="css/weather.css">
+	<link rel="stylesheet" href="css/calendar.css">
+	<link rel="stylesheet" href="css/button.css">
+	<link rel="stylesheet" href="css/clock.css">
+	
+
+<style>
+body{
+background-image: url("img/back.png");
+background-repeat: repeat;
+}
+#calendarbox{
+	background-color:#bfb5b5;
+	postion:absolute;
+	top:50%;
+	width:50%;
+	height:80%;
+	border-radius:50%;
+}
+
+
+
+.app { text-align: center; }
+
+.app-calendar {
+	height: 200px;
+	margin-bottom: 24px;
+	width: 200px;
+		font: 100%/1.5em "Droid Sans", sans-serif;
+}
+
+.app-title {
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 0 5px #15181f;
+}
+
+#weekday {
+	background: #d9383c;
+	border-radius: 35px 35px 0 0;
+	color: #f9f9f9;
+	font-size: 24px;
+	line-height: 56px;
+	position: relative;
+	text-transform: lowercase;
+}
+
+#weekday:before,
+#weekday:after {
+	background: #f9f9f9;
+	border-radius: 50%;
+	content: "";
+	height: 8px;
+	margin-top: -4px;
+	position: absolute;
+	top: 50%;
+	width: 8px;
+	z-index: 1;
+}
+
+#weekday:before { left: 24px; }
+#weekday:after { right: 24px; }
+
+#day {
+	background: #f9f9f9;
+	border-radius: 0 0 35px 35px;
+	-webkit-box-shadow: 0 8px 0 #15181f;
+	box-shadow: 0 8px 0 #15181f;
+	color: #15181f;
+	font-size: 120px;
+	font-weight: bold;
+	height: 144px;
+	line-height: 130px;
+}
+#clickme{
+	position:absolute;
+	left:39%;
+	top:10%;
+	font-family: 'Lato', sans-serif;
+    font-weight: normal;
+    font-size: 70px;
+    color: white;
+}
+</style>
+	
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+</head>
+<body onload="timerTick()">
+
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ <script src="js/clock.js"></script>
+ 
+ <div id="clickme">Click Us</div>
+ 
+<section class="container1" >
+ <div id="card1">
+    <figure class="front" onclick="flip1()">
+	
+	<div id="calendarbox">
+	<div class="container1">
+		<div class="app">
+			<div class="app-calendar">
+				<div id="weekday">monday</div>
+				<div id="day">13</div>
+			</div> 
+		</div>
+	</div>
+</div>
+
+<script>
+	var date = new Date(),
+	weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	var m = ["January","February","March","April","May","June","July","August","September","October","November", "December"];
+	
+	document.getElementById('weekday').innerHTML = weekday[date.getDay()];
+	document.getElementById('day').innerHTML = date.getDate()+" <div style=\'font-size:20px;height:24px;line-height:0px;\'>"+m[date.getMonth()]+ "</div>";
+
+</script>
+	
+	</figure>
+    <figure class="back">
+<div ng-app="Calendar" ng-controller="calController" id="calendar">
+
+			<table align="center">
+				<tr id="month"  >
+				<td id="pre" onclick="pre()">&#8249;</td>
+					<td  colspan='5' align="center" style="color:white;	font-size:40px; " id="mhead"></td>
+					<td id="next" onclick="next()">&#8250;</td>
+				</tr>
+				<tr ng-init="weekdays=['Sun','Mon','Tues','Wed','Thur','Fri','Sat']" style="text-align:center">
+					<th ng-repeat="day in weekdays">
+						{{day}}
+					</th>
+				</tr>
+				<tr rowspan='6'><td colspan='7'>
+				<table id="cal" align="center">
+				</table>
+				</td></tr>
+			</table>
+	</div> 
+<div style="margin-left:20%;width:400px;height:100px">
+	<button onclick="flip1()"  style="left:45%; top:40%;width:100px;font-size:20px">Back</button>
+</div>
+	</figure>
+  </div>
+</section>
+
+<script>
+
+function flip1(){
+	$("#card1").toggleClass("flipped");
+	$("#card1 .front").toggle();
+	$(".container2").toggle();
+	$(".container3").toggle();
+	$("#clickme").toggle();
+	}
+
+</script>
+ <script src="js/calendar.js"></script>
+ 
+
+
+<section class="container2" >
+ <div id="card2">
+    <figure class="front" onclick="flip2()">
+	   
+	   <div style="width:300px;height:150px;left:50%;">
+		<div style="width:80px;height:17px;box-shadow: 7px 4px 0px 0px rgba(0,0,0,0.75);;background-color:#9c5656;left:38%;position:relative;top:18%;"></div>
+		<div class="digitalclock" style="left:7%;top:15%;z-index:1;box-shadow: 10px 0px 0px -4px rgba(0,0,0,0.75);">
+		  <ul>
+				<li class="hour"></li>
+				  <li class="point">:</li>
+				  <li class="min"></li>
+				  <li class="point">:</li>
+				  <li class="sec"></li>
+		  </ul>
+		</div>
+		<div style="width:160px;height:20px;background-color:#958d8d;left:24%;position:relative;top:7%;z-index:0;box-shadow: 10px 0px 0px -4px rgba(0,0,0,0.75);"></div>
+</div>
+	   
+	</figure>
+    <figure class="back">
+
+		<div id='c'>
+			<article class="analogclock" >
+				  <div class="hours-container">
+					<div class="hours"></div>
+				  </div>
+				  <div class="minutes-container">
+					<div class="minutes"></div>
+				  </div>
+				  <div class="seconds-container">
+					<div class="seconds"></div>
+				  </div>
+				  <div class="dot"></div>
+			</article>
+		</div>
+		<div style="margin-left:20%;width:400px;height:130px;top:10%;">
+			<div class="digitalclock" style=" left:13%;top:12%;border: 5px solid #dddddd;background:#24785d;box-shadow: 10px 10px 0px 0px rgba(0,0,0,0.75);">
+				  <ul>
+					  <li class="hour"></li>
+					  <li class="point">:</li>
+					  <li class="min"></li>
+					  <li class="point">:</li>
+					  <li class="sec"></li>
+				  </ul>
+			</div>
+		</div>	
+		<div style="margin-left:20%;width:400px;height:200px">
+			<button onclick="flip2()"  style="left:30%; top:5%;width:100px;font-size:20px">Back</button>
+		</div>
+	</figure>
+  </div>
+</section>
+
+<script>
+
+function flip2(){
+	$("#card2").toggleClass("flipped2");
+	$("#card2 .front").toggle();
+	$(".container1").toggle();
+	$(".container3").toggle();
+		$("#clickme").toggle();
+	}
+
+</script>
+
+
+<section class="container3" >
+ <div id="card3">
+    <figure class="front" onclick="flip3()">
+	
+<script type="text/javascript">
+
+  function getWeather(){
+      $.ajax("http://api.openweathermap.org/data/2.5/weather?q=Islamabad&appid=2de143494c0b295cca9337e1e96b00e0", {
+        dataType: 'jsonp',
+        success: function(result) {
+          $(".city").html('<b></b>' + result.name + ", " + result.sys.country );
+		   $(".status").html( "<b></b> " + result.weather[0].description);
+			$(".temperature").html( "<b></b> " + parseInt(result.main.temp- 273) + "° C");
+			$("#min").html(  parseInt(result.main.temp_min- 273) + "° C");
+			$("#max").html(  parseInt(result.main.temp_max- 273) + "° C");
+			$("#wind").html( result.wind.speed + "km/h");
+			$("#humid").html( result.main.humidity + "%");
+			$("#pressure").html( result.main.pressure + "mb ");
+			
+			if(result.weather[0].description.toLowerCase().indexOf("sun") >=0){
+				$(".pic img").attr("src", "img/sunny.png");
+			}
+			else if(result.weather[0].description.toLowerCase().indexOf("cloud") >=0){
+				$(".pic img").attr("src", "img/cloudy.png");
+			}
+			else if(result.weather[0].description.toLowerCase().indexOf("rain") >=0){
+				$(".pic img").attr("src", "img/rainy.png");
+			}
+			else if(result.weather[0].description.toLowerCase().indexOf("haze") >=0){
+				$(".pic img").attr("src", "img/haze.png");
+			}
+			else{
+				$(".pic img").attr("src", "img/normal.png");
+			
+			}
+			}
+      });
+    }
+	getWeather();
+
+
+  
+  </script>
+  
+<div id="weather-box">
+    <h1 class="city"></h1>
+    <h2 class="temperature"></h2>
+    <div class="pic"><img src=""/></div>
+    <div class="status" ></div>
+</div>
+	 
+	   
+	</figure>
+    <figure class="back">
+		<div id="weather-box2">
+	<div id="seagreen">
+			   <h1 class="city" style="left:0%;font-size:40px;margin-top:30px;color:f2f2f2;padding-top:20px;"></h1>
+			    <div class="pic" style="top:2%;width:200px;height:200px;"><img src=""/></div>
+				<div class="status"  style="width:450px;text-align:right;color:#d8d8d8;top:-80%;"></div>
+				    <h2 class="temperature" style="top:-130%;left:25%;"></h2>
+	</div>
+	
+	<table>
+		<tr><td >Minimum Temperature</td><td id="min"></td></tr>
+		<tr><td >Maximum Temperature</td><td id="max"></td></tr>
+		<tr><td >Wind</td><td id="wind"></td></tr>
+		<tr><td >Humidity</td><td id="humid"></td></tr>
+		<tr><td >Pressure</td><td id="pressure"></td></tr>
+	</table>
+</div>
+		<div style="margin-left:20%;width:500px;height:200px;text-align:center;">
+			<button onclick="flip3()"  style="top:8%;width:100px;font-size:20px">Back</button>
+		</div>
+	</figure>
+  </div>
+</section>
+<script>
+
+function flip3(){
+	$("#card3").toggleClass("flipped3");
+	$("#card3 .front").toggle();
+	$(".container1").toggle();
+	$(".container2").toggle();
+		$("#clickme").toggle();
+	}
+
+</script>
+</body>
+</html>

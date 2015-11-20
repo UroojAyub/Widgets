@@ -1,0 +1,116 @@
+
+
+ table{
+	background: white;
+	border-radius:5%;
+	height: 208px;
+	margin: 0;
+	position: relative;
+	text-align: center;
+	width: 450px;
+	height:280px;
+	border-spacing: 0;
+
+}
+#calendar{
+	width: 450px;
+	border-radius: 5%;
+	overflow: hidden;
+}
+body{
+	font: 87.5%/1.5em 'Lato', sans-serif;
+
+background: linear-gradient(
+  to bottom,
+  #67b494 ,
+  #67b494 50%,
+  #54a483 50%,
+  #54a483
+);
+}
+#cal{
+	border-radius:0%;
+	margin-bottom:20px;
+	
+}
+.otherMonth{
+		color:grey;
+}
+.today{
+	background:#cacaca;
+}
+td{
+    color:black;
+	font-size:20px;
+	padding:4;
+
+}
+
+th{
+	color:#B33650;
+	font-size:20px;
+	padding-top:20px;
+	width : 64px;
+}
+
+#cal td:hover{
+background-color:#ffe990;
+}
+
+
+#month{
+	background:#ba3c3c;
+	border-radius: 5%;
+
+	 height:130px;
+}
+#pre:hover,#next:hover{
+	color: yellow;
+	background:#cc5656;
+}
+#pre,#next{
+	font-size: 5em;
+  margin: -1% auto;
+}
+
+<!--cardflipper-->
+.container1 { 
+  width: 200px;
+  height: 260px;
+  position: relative;
+  perspective: 800px;
+}
+#card1 {
+
+  top:30%;
+  left:10%;
+
+  position: absolute;
+  transform-style: preserve-3d;
+  transition:all 2s cubic-bezier(0,1.32,.15,1.07);
+}
+#card1 figure {
+  margin: 0;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+#card1 .front {
+  background: red;
+  
+}
+#card1 .back {
+  background: blue;
+  transform: rotateY(540deg);
+}
+
+#card1.flipped {
+  transform: rotateY(-540deg)  translate(-320px,-160px);
+}
+
+
+
+
